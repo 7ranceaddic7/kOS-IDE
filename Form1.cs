@@ -181,7 +181,7 @@ namespace kOS_IDE
             Status.Text = String.Format("{0}.{1}, build {2} (rev {3})", Assembly.GetExecutingAssembly().GetName().Version.Major, Assembly.GetExecutingAssembly().GetName().Version.Minor, Assembly.GetExecutingAssembly().GetName().Version.Build, Assembly.GetExecutingAssembly().GetName().Version.Revision);
 #else
             // Just for Laughs :D
-            string[] msgs = { "Ready.", "Hello!", "Ready to xplode some rockets?", "Looks like some kerbals need autopiloting ...", "Ready.", "AP FTW !",
+            string[] msgs = { "Ready.", "Hello!", "Ready to xplode some rockets?", "Looks like some Kerbals need autopiloting ...", "Ready.", "AP FTW !",
                                 "MechJeb's for the weaks!", "Have you ever looked to the \"?\" menu?" };
             Random r = new Random();
             int next = r.Next(1, msgs.Length) - 1;
@@ -193,7 +193,7 @@ namespace kOS_IDE
                 string[] envarg = Environment.GetCommandLineArgs();
                 if (envarg.Count() > 1)
                 {
-                    Editor.Text = File.ReadAllText(envarg[1]);
+                    Editor.Text = System.IO.File.ReadAllText(envarg[1]);
                     RefreshVars(Editor.Text);
                     filename = envarg[1];
 #if RELEASE
@@ -220,7 +220,7 @@ namespace kOS_IDE
 
             if (bytes > 10000)
             {
-                Status.Text = "More than 10k bytes. Toggled comment sttriper at save. (but not removed on the editor)";
+                Status.Text = "More than 10k bytes. Toggled comment striper at save. (but not removed on the editor)";
                 CommentStripper = true;
             }
 
@@ -384,7 +384,7 @@ namespace kOS_IDE
             TextEditor result = new TextEditor();
             result.FastStart = true;
             result.Editor.Lexing.Lexer = Lexer.Xml;
-            result.Editor.Text = File.ReadAllText(RandomPath, Encoding.ASCII);
+            result.Editor.Text = System.IO.File.ReadAllText(RandomPath, Encoding.ASCII);
             result.Show();
         }
 
